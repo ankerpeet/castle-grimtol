@@ -14,8 +14,12 @@ namespace CastleGrimtol.Project
         }
         public Room ChangeRoom(string direction)
         {
-            CurrentRoom = CurrentRoom.Exits[direction];
-            return CurrentRoom;
+            if (CurrentRoom.Exits.ContainsKey(direction))
+            {
+                CurrentRoom = CurrentRoom.Exits[direction];
+                return CurrentRoom;
+            }
+            return null;
         }
         public void Reset()
         {

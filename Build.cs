@@ -26,16 +26,16 @@ namespace CastleGrimtol
             Hero = new Player(100, 0);
 
             //Room 1 - Courtyard
-            Courtyard = new Room("The Courtyard", "Quiet and empty. Maybe a little too quiet and empty.");
+            Courtyard = new Room("The Courtyard", "Quiet and empty. Maybe a little too quiet and empty." , true);
             //Room 2 Barracks
-            Room Barracks = new Room("The Barracks", "Filled with sleeping soldiers. Be carefull not to wake them.");
+            Room Barracks = new Room("The Barracks", "Filled with sleeping soldiers. Be carefull not to wake them.", true);
             Barracks.Items.Add(Sword);
             //Room 3 - Dungeon
-            Room Dungeon = new Room("The Dongeon", "Cold and dark.");
+            Room Dungeon = new Room("The Dungeon", "Cold and dark.", false);
             Dungeon.Items.Add(MagicWand);
             Dungeon.Items.Add(Torch);
             //Room 4 = Throne Room
-            Room ThroneRoom = new Room("The Throne Room", "This room is super fancy.");
+            Room ThroneRoom = new Room("The Throne Room", "This room is super fancy.", true);
             ThroneRoom.Items.Add(Potion);
             ThroneRoom.Items.Add(Food);
 
