@@ -7,14 +7,20 @@ namespace CastleGrimtol
     {
         public static void Main(string[] args)
         {
-            //Start Game Build
-            Build MyBuild = new Build();
-            MyBuild.BuildGame();
-
-            Game StartGame = new Game();
-            Console.WriteLine(StartGame.CurrentRoom.Name);
-            Console.WriteLine(StartGame.CurrentRoom.Description);
-
+            bool Running = true;
+            while (Running)
+            {
+                //Start Game Build
+                Menu Main = new Menu();
+                Main.MainMenu();
+                Console.WriteLine("You died, Sorry about that.");
+                Console.WriteLine("Would you like to play again? (Y/N)");
+                string Input = Console.ReadLine();
+                if (Input.ToUpper() == "N")
+                {
+                    Running = false;
+                }
+            }
         }
     }
 }
