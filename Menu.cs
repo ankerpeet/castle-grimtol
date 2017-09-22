@@ -102,11 +102,28 @@ namespace CastleGrimtol
                 {
                     if (Input.Split(" ")[1] != null)
                     {
-                        foreach (Item item in currentRoom.Items)
+                        for (int i = 0; i < currentRoom.Items.Count; i++)
                         {
-                            if (item.Name == Input.Split(" ")[1])
+                            Item item = currentRoom.Items[i];
+                            if (item.Name.ToUpper() == Input.Split(" ")[1])
                             {
                                 currentPlayer.Inventory.Add(item);
+                                currentRoom.Items.Remove(item);
+                                Console.Clear();
+                                Console.WriteLine("-----------------------------------");
+                                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                Console.WriteLine("You now have a " + item.Name);
+                                Console.ResetColor();
+                                Console.WriteLine("-----------------------------------");
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("-----------------------------------");
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                Console.WriteLine("Not a valid item, or you do not have access to this item here.");
+                                Console.ResetColor();
+                                Console.WriteLine("-----------------------------------");
                             }
                         }
                     }
