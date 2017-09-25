@@ -27,7 +27,7 @@ namespace CastleGrimtol
                 Console.WriteLine("Room Description: " + currentRoom.Description);
 
                 //Check to see if there are items in room, then print the
-                if (currentRoom.Items.Count > 0)
+                if (currentRoom.Items.Count > 0 && currentRoom.ViewItems == true)
                 {
                     Console.WriteLine("Items in room:");
                     for (int i = 0; i < currentRoom.Items.Count; i++)
@@ -62,7 +62,7 @@ namespace CastleGrimtol
                     Console.Clear();
                     Console.WriteLine("Commands:");
                     Console.WriteLine("-----------------------------------");
-                    Console.WriteLine("GO" + "\t" + "Accepts: North, East, South, West, or N, E, S, & W.");
+                    Console.WriteLine("GO" + "\t" + "N, E, S, & W.");
                     Console.WriteLine("TAKE" + "\t" + "Accepts: Name of item.");
                     Console.WriteLine("USE" + "\t" + "Accepts: Name of item.");
                     Console.WriteLine("RESTART" + "\t" + "Restarts game.");
@@ -115,6 +115,65 @@ namespace CastleGrimtol
                                 Console.WriteLine("You now have a " + item.Name);
                                 Console.ResetColor();
                                 Console.WriteLine("-----------------------------------");
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.WriteLine("-----------------------------------");
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                Console.WriteLine("Not a valid item, or you do not have access to this item here.");
+                                Console.ResetColor();
+                                Console.WriteLine("-----------------------------------");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("-----------------------------------");
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Not a valid item, or you do not have access to this item here.");
+                        Console.ResetColor();
+                        Console.WriteLine("-----------------------------------");
+                    }
+                }
+                //Take Item
+                else if (Input.Split(" ")[0] == "USE")
+                {
+                    if (Input.Split(" ")[1] != null)
+                    {
+                        for (int i = 0; i < currentPlayer.Inventory.Count; i++)
+                        {
+                            Item item = currentPlayer.Inventory[i];
+                            if (item.Name.ToUpper() == Input.Split(" ")[1])
+                            {
+                                currentPlayer.Inventory.Remove(item);
+                                Console.Clear();
+                                Console.WriteLine("-----------------------------------");
+                                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                Console.WriteLine("You now have used: " + item.Name);
+                                Console.ResetColor();
+                                Console.WriteLine("-----------------------------------");
+
+                                if (Input.Split(" ")[1] == "TORCH" && currentRoom.Name == "The Dungeon")
+                                {
+                                    currentRoom.ViewItems = true;
+                                }
+                                else if (Input.Split(" ")[1] == "FOOD")
+                                {
+                                    currentPlayer.Health += 20;
+                                    Console.WriteLine("You now have gained 20 health.");
+                                }
+                                else if (Input.Split(" ")[1] == "POTION")
+                                {
+                                    currentPlayer.Health -= 40;
+                                    Console.WriteLine("You now have lost 40 health.");
+                                }
+                                else if (Input.Split(" ")[1] == "KEY" && currentRoom.Name == "The Throne Room")
+                                {
+                                    Playing = false;
+                                    Console.WriteLine("You were able to unlock the chest! You won!");
+                                }
                             }
                             else
                             {

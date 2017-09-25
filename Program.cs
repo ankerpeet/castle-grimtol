@@ -13,7 +13,7 @@ namespace CastleGrimtol
                 //Start Game Build
                 Menu Main = new Menu();
                 Main.MainMenu();
-                Console.WriteLine("You died, Sorry about that.");
+                Console.WriteLine("Game Over!");
                 Console.WriteLine("Would you like to play again? (Y/N)");
                 string Input = Console.ReadLine();
                 if (Input.ToUpper() == "N")

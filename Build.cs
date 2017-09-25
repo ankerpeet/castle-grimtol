@@ -14,7 +14,7 @@ namespace CastleGrimtol
             //Sword build
             Item Sword = new Item("Sword", "A weapen designed for slashing and stabbing.");
             //Wand build
-            Item MagicWand = new Item("Magic Wand", "Used to cast spells for cursing and destroying enemies.");
+            Item Key = new Item("Key", "Used to unlock locked doors, duh.");
             //Potion
             Item Potion = new Item("Potion", "Using this potion will will either restore you to maximum health, or reduce your health to zero.");
             //Torch
@@ -30,14 +30,15 @@ namespace CastleGrimtol
             //Room 2 Barracks
             Room Barracks = new Room("The Barracks", "Filled with sleeping soldiers. Be carefull not to wake them.", true);
             Barracks.Items.Add(Sword);
+            Barracks.Items.Add(Food);
             //Room 3 - Dungeon
             Room Dungeon = new Room("The Dungeon", "Cold and dark.", false);
-            Dungeon.Items.Add(MagicWand);
-            Dungeon.Items.Add(Torch);
+            Dungeon.Items.Add(Key);
+            Dungeon.Items.Add(Potion);
+
             //Room 4 = Throne Room
-            Room ThroneRoom = new Room("The Throne Room", "This room is super fancy.", true);
-            ThroneRoom.Items.Add(Potion);
-            ThroneRoom.Items.Add(Food);
+            Room ThroneRoom = new Room("The Throne Room", "This room is super fancy. There's also an important looking chest over in the corner. Dang, it's locked.", true);
+            ThroneRoom.Items.Add(Torch);
 
             //Courtyard Exits
             Courtyard.AddExit("N", ThroneRoom);
